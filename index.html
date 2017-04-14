@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <h1>Timer</h1>
+
+  <div>
+    <p>Session Timer</p>
+    <p><span id="seshTimer">25</span> min</p>
+    <button id="seshNeg">-</button>
+    <button id="seshPos">+</button>
+  </div>
+
+  <div>
+    <p>Break Timer</p>
+    <p><span id="breakTimer">5</span> min</p>
+    <button id="breakNeg">-</button>
+    <button id="breakPos">+</button>
+  </div>
+
+  <div id="timerContainer">
+    <p id="mainTimer">25:00</p>
+    <button id="startTimerBtn">Start Timer</button>
+    <button id="stopTimerBtn">Pause Timer</button>
+  </div>
+
+
+  <script type="text/javascript" src="js/pomodoro.js"></script>
+</body>
+
+</html>
