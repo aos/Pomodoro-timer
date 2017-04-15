@@ -1,78 +1,137 @@
 /*
-This is a Pomodoro clock, pomodoro means tomato in Italian
+========= Pomodoro Timer
 
 Features:
 -- A countdown timer with user-specified duration
--- A break timer with user-specified duration
+-- A break timer with either short (5 min) or long (10 min) duration
 
 -- When session timer reaches 0, break timer starts
 -- When break timer reaches 0, session timer restarts
 
--- Must be able to start timer on click
--- Must be able to pause timer on click
+-- Must be able to start timer
+-- Must be able to pause timer
+-- Must be able to reset timer 
 */
 
-var timerID;
-var timer;
-var duration;
-var minutes, seconds;
-var isPause = false;
+var timerID,
+    timer,
+    duration,
+    minutes, 
+    seconds,
+    isPause,
+    switchTimer = false;
 
 /* 
   Handlers 
 */
+// Main Timer
 var display = document.querySelector("#mainTimer");
 var startTimerBtn = document.querySelector("#startTimerBtn");
 var stopTimerBtn = document.querySelector("#stopTimerBtn");
+var resetBtn = document.querySelector("#reset");
 stopTimerBtn.hidden = true;
 
-// Session
+// Session Timer
 var seshDisplay = document.querySelector("#seshTimer");
 var seshNegBtn = document.querySelector("#seshNeg");
 var seshPosBtn = document.querySelector("#seshPos");
 
-/*
-  View
-*/
-timer = Number(seshDisplay.textContent);
-duration = timer * 60;
+// Break Timer
+var breakDisplay = document.querySelector("#breakTimer");
+var breakNegBtn = document.querySelector("#breakNeg");
+var breakPosBtn = document.querySelector("#breakPos");
 
 /* 
   Event listeners
 */
-var clickStartTimer = startTimerBtn.addEventListener("click", eventsOnClickStart)
-var clickStopTimer = stopTimerBtn.addEventListener("click", eventsOnClickStop)
+// Main timer buttons
+var clickStartTimer = startTimerBtn.addEventListener("click", eventsOnClickStart);
+var clickStopTimer = stopTimerBtn.addEventListener("click", eventsOnClickStop);
+var resetTimer = resetBtn.addEventListener("click", resetTimer);
+
+// Session timer buttons
+var seshNeg = seshNegBtn.addEventListener("click", seshTimerNeg);
+var seshPos = seshPosBtn.addEventListener("click", seshTimerPos);
+
+// Break timer buttons
+var breakPos = breakPosBtn.addEventListener("click", breakTimerLong);
+var breakNeg = breakNegBtn.addEventListener("click", breakTimerShort);
 
 /*
   Controllers
 */
+// Main timer
 function eventsOnClickStart(e) {
   // Hides start button and shows pause button on click
   e.currentTarget.hidden = true;
   stopTimerBtn.hidden = false;
-
-  // If timer was started, this will be true. If timer paused, timer duration will be equal to duration when paused
-  if (isPause === true) {
-    timer = duration;
-  }
   startTimer();
-}
 
+  // Handles pause functionality
+  isPause = false;
+
+  // Disables timer control buttons when timer is running
+  seshNegBtn.disabled = true;
+  seshPosBtn.disabled = true;
+  resetBtn.disabled = true;
+};
 function eventsOnClickStop(e) {
+  // Hides pause button and shows start button on click
   clearInterval(timerID);
   e.currentTarget.hidden = true;
   startTimerBtn.hidden = false;
+
+  // Enables timer control buttons when timer is paused
+  seshNegBtn.disabled = false;
+  seshPosBtn.disabled = false;
+  resetBtn.disabled = false;
+
+  isPause = true;
+};
+function resetTimer() {
+  timer = Number(seshDisplay.textContent);
+  display.textContent = (timer < 10 ? "0" + timer : timer) + ":00";
+  duration = timer * 60;
 }
+
+// Session timer
+function seshTimerPos() {
+  seshDisplay.textContent = Number(seshDisplay.textContent) + 1;
+};
+function seshTimerNeg() {
+  seshDisplay.textContent = Number(seshDisplay.textContent) - 1;
+  if (seshDisplay.textContent < 1) {
+    seshDisplay.textContent = 1;
+  }
+};
+
+// Break timer
+function breakTimerLong() {
+  breakDisplay.textContent = 10;
+};
+function breakTimerShort() {
+  breakDisplay.textContent = 5;
+};
 
 /* 
   Timer functionality 
 */
 function startTimer() {
-  timerID = setInterval(function () {
 
+  // Handles pause timer, and duration of session and break timer
+  if (isPause) {
+    // Do nothing (aka don't reset duration)
+  } else if (switchTimer) {
+    timer = Number(breakDisplay.textContent);
+    duration = timer * 60;
+  } else {
+    timer = Number(seshDisplay.textContent);
+    duration = timer * 60;
+  }
+
+  timerID = setInterval(function () {
     // Get integer value
     minutes = parseInt(duration / 60, 10);
-    // Use mod to countdown in seconds
     seconds = parseInt(duration % 60, 10);
 
     // Pad with leading "0" if less than 10
@@ -88,13 +147,10 @@ function startTimer() {
     if (duration < 0) {
       // Stop timer first
       clearInterval(timerID);
-      // Set duration 
-      duration = timer * 60;
+      // Change logic to switch to break timer
+      switchTimer = !switchTimer;
       // Restart timer
       startTimer();
     }
-    // Sets whether the timer has been paused or not
-    // Starts false, when timer activated, it is flipped to true
-    isPause = !isPause;
   }, 1000)
 }
