@@ -14,10 +14,7 @@ Features:
 */
 
 var timerID,
-    timer,
     duration,
-    minutes, 
-    seconds,
     isPause,
     switchTimer = false;
 
@@ -62,34 +59,31 @@ var breakNeg = breakNegBtn.addEventListener("click", breakTimerShort);
 */
 // Main timer
 function eventsOnClickStart(e) {
+  startTimer();
   // Hides start button and shows pause button on click
   e.currentTarget.hidden = true;
   stopTimerBtn.hidden = false;
-  startTimer();
-
-  // Handles pause functionality
-  isPause = false;
-
   // Disables timer control buttons when timer is running
   seshNegBtn.disabled = true;
   seshPosBtn.disabled = true;
   resetBtn.disabled = true;
+  // Handles pause functionality
+  isPause = false;
 };
 function eventsOnClickStop(e) {
-  // Hides pause button and shows start button on click
   clearInterval(timerID);
+  // Hides pause button and shows start button on click
   e.currentTarget.hidden = true;
   startTimerBtn.hidden = false;
-
   // Enables timer control buttons when timer is paused
   seshNegBtn.disabled = false;
   seshPosBtn.disabled = false;
   resetBtn.disabled = false;
-
+  // Handles pause functionality
   isPause = true;
 };
 function resetTimer() {
-  timer = Number(seshDisplay.textContent);
+  var timer = Number(seshDisplay.textContent);
   display.textContent = (timer < 10 ? "0" + timer : timer) + ":00";
   duration = timer * 60;
 }
@@ -122,14 +116,13 @@ function startTimer() {
   if (isPause) {
     // Do nothing (aka don't reset duration)
   } else if (switchTimer) {
-    timer = Number(breakDisplay.textContent);
-    duration = timer * 60;
+    duration = Number(breakDisplay.textContent) * 60;
   } else {
-    timer = Number(seshDisplay.textContent);
-    duration = timer * 60;
+    duration = Number(seshDisplay.textContent) * 60;
   }
 
   timerID = setInterval(function () {
+    var minutes, seconds;
     // Get integer value
     minutes = parseInt(duration / 60, 10);
     seconds = parseInt(duration % 60, 10);
