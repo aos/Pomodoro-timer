@@ -149,7 +149,7 @@ body {
 */
 
 #mainTimer {
-  font-size: 85px;
+  font-size: 90px;
   font-weight: 600;
   line-height: 75px;
 }
@@ -226,13 +226,13 @@ button:focus {
 
 .main-timer-btn {
   color: #FFF;
-  margin-top: 15px;
+  font-size: 15px;
+  margin-top: 25px;
   margin-right: 10px;
   padding: 10px;
   border: 0;
   border-radius: 5px;
-  width: 60px;
-  height: 35px;
+  width: 65px;
   cursor: pointer;
 }
 
