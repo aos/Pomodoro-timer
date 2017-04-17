@@ -47,18 +47,16 @@ var breakPosBtn = document.querySelector("#breakPos");
 /* 
   Event listeners
 */
-// Main timer buttons
-var clickStartTimer = startTimerBtn.addEventListener("click", eventsOnClickStart);
-var clickStopTimer = stopTimerBtn.addEventListener("click", eventsOnClickStop);
-var resetTimer = resetBtn.addEventListener("click", resetTimer);
-
-// Session timer buttons
-var seshNeg = seshNegBtn.addEventListener("click", seshTimerNeg);
-var seshPos = seshPosBtn.addEventListener("click", seshTimerPos);
-
-// Break timer buttons
-var breakPos = breakPosBtn.addEventListener("click", breakTimerLong);
-var breakNeg = breakNegBtn.addEventListener("click", breakTimerShort);
+// Main timer
+startTimerBtn.addEventListener("click", eventsOnClickStart);
+stopTimerBtn.addEventListener("click", eventsOnClickStop);
+resetBtn.addEventListener("click", resetTimer);
+// Session timer
+seshNegBtn.addEventListener("click", seshTimerNeg);
+seshPosBtn.addEventListener("click", seshTimerPos);
+// Break timer
+breakPosBtn.addEventListener("click", breakTimerLong);
+breakNegBtn.addEventListener("click", breakTimerShort);
 
 /*
   Controllers
