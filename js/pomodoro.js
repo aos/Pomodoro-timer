@@ -86,6 +86,9 @@ function resetTimer() {
   var timer = Number(seshDisplay.textContent);
   display.textContent = (timer < 10 ? "0" + timer : timer) + ":00";
   duration = timer * 60;
+  currentSesh.classList.remove("current");
+  currentBreak.classList.remove("current");
+  display.classList.remove("current");
 }
 
 // Session timer
