@@ -64,8 +64,6 @@ function eventsOnClickStart(e) {
   e.currentTarget.hidden = true;
   stopTimerBtn.hidden = false;
   // Disables timer control buttons when timer is running
-  seshNegBtn.disabled = true;
-  seshPosBtn.disabled = true;
   resetBtn.disabled = true;
   // Handles pause functionality
   isPause = false;
@@ -76,8 +74,6 @@ function eventsOnClickStop(e) {
   e.currentTarget.hidden = true;
   startTimerBtn.hidden = false;
   // Enables timer control buttons when timer is paused
-  seshNegBtn.disabled = false;
-  seshPosBtn.disabled = false;
   resetBtn.disabled = false;
   // Handles pause functionality
   isPause = true;
