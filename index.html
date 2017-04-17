@@ -5,16 +5,16 @@
   <title></title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
-  <header class="container">
+  <header class="header">
     <h1>Pomodoro Timer</h1>
   </header>
 
-  <section class="row">
+  <section class="container row">
     <div class="grid">
 
       <!-- Main Timer -->
@@ -22,17 +22,17 @@
       <section class="col-2-3">
         <section class="col-3-4">
           <p id="mainTimer">25:00</p>
-          <button id="startTimerBtn">Start Timer</button>
-          <button id="stopTimerBtn">Pause Timer</button>
-          <button id="reset">Reset</button>
+          <button class="main-timer-btn success-btn" id="startTimerBtn">Start</button>
+          <button class="main-timer-btn alert-btn" id="stopTimerBtn">Pause</button>
+          <button class="main-timer-btn alt-btn" id="reset">Reset</button>
         </section><!--
 
             Current session
 
           --><section class="col-1-4 current options-text">
-              <p class="current">Session</p>
+              <p id="currentSesh">• Session</p>
               <br>
-              <p>Break</p>
+              <p id="currentBreak">• Break</p>
             </section>
       </section><!-- 
         
@@ -44,7 +44,7 @@
           <!-- Session -->
           <section class="col-3-4 options">
             <p>Session Length</p>
-            <p><span id="seshTimer">25</span> min</p>
+            <p class="options-time"><span id="seshTimer">25</span> min</p>
           </section><!--
           --><section class="col-1-4 options">
             <button class="btn-sesh" id="seshPos">+</button>
@@ -57,10 +57,10 @@
         <div>
           <section class="col-3-4 options">
             <p>Break Length</p>
-            <p><span id="breakTimer">5</span> min</p>
+            <p class="options-time"><span id="breakTimer">5</span> min</p>
           </section><!--
           --><section class="col-1-4 options">
-            <button class="btn-options" id="breakNeg">Short</button>
+            <button class="btn-options btn-options-selected" id="breakNeg">Short</button>
             <button class="btn-options" id="breakPos">Long</button>
           </section>
         </div>
@@ -69,10 +69,18 @@
     </div>
   </section>
 
-  <footer class="container">
-    <p>Made by Aos</p>
+  <footer class="footer">
+    <h5>Instructions:</h5>
+    <p>1. Set session length</p>
+    <p>2. Set break length (Short - 5 min, Long - 10 min)</p>
+    <p>3. Press Start</p>
+    <br>
+    <br>
+    <p>Made with <3 by <a href="https://twitter.com/onlyone_Aos">Aos</a></p>
+    <p>Let me know what you think!</p>
   </footer>
 
+  <audio src="bell.wav" volume="0.7" type="audio/wav"></audio>
   <script type="text/javascript" src="js/pomodoro.js"></script>
 </body>
 

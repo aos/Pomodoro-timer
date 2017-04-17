@@ -11,6 +11,8 @@ Features:
 -- Must be able to start timer
 -- Must be able to pause timer
 -- Must be able to reset timer 
+
+Copyright (c) 2017 Aos Dabbagh (aosdab@gmail.com)
 */
 
 var timerID,
@@ -27,6 +29,10 @@ var startTimerBtn = document.querySelector("#startTimerBtn");
 var stopTimerBtn = document.querySelector("#stopTimerBtn");
 var resetBtn = document.querySelector("#reset");
 stopTimerBtn.hidden = true;
+
+var currentSesh = document.querySelector("#currentSesh");
+var currentBreak = document.querySelector("#currentBreak");
+var audio = document.querySelector("audio");
 
 // Session Timer
 var seshDisplay = document.querySelector("#seshTimer");
@@ -98,9 +104,15 @@ function seshTimerNeg() {
 // Break timer
 function breakTimerLong() {
   breakDisplay.textContent = 10;
+  breakNegBtn.classList.remove("btn-options-selected");
+  breakPosBtn.classList.remove("btn-options-selected");
+  breakPosBtn.classList.add("btn-options-selected");
 };
 function breakTimerShort() {
   breakDisplay.textContent = 5;
+  breakNegBtn.classList.remove("btn-options-selected");
+  breakPosBtn.classList.remove("btn-options-selected");
+  breakNegBtn.classList.add("btn-options-selected");
 };
 
 /* 
@@ -113,8 +125,14 @@ function startTimer() {
     // Do nothing (aka don't reset duration)
   } else if (switchTimer) {
     duration = Number(breakDisplay.textContent) * 60;
+    currentSesh.classList.remove("current");
+    currentBreak.classList.add("current");
+    display.classList.add("current");
   } else {
     duration = Number(seshDisplay.textContent) * 60;
+    currentSesh.classList.add("current");
+    currentBreak.classList.remove("current");
+    display.classList.remove("current");
   }
 
   timerID = setInterval(function () {
@@ -139,6 +157,7 @@ function startTimer() {
       // Change logic to switch to break timer
       switchTimer = !switchTimer;
       // Restart timer
+      audio.play();
       startTimer();
     }
   }, 1000)
