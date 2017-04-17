@@ -47,18 +47,16 @@ var breakPosBtn = document.querySelector("#breakPos");
 /* 
   Event listeners
 */
-// Main timer buttons
-var clickStartTimer = startTimerBtn.addEventListener("click", eventsOnClickStart);
-var clickStopTimer = stopTimerBtn.addEventListener("click", eventsOnClickStop);
-var resetTimer = resetBtn.addEventListener("click", resetTimer);
-
-// Session timer buttons
-var seshNeg = seshNegBtn.addEventListener("click", seshTimerNeg);
-var seshPos = seshPosBtn.addEventListener("click", seshTimerPos);
-
-// Break timer buttons
-var breakPos = breakPosBtn.addEventListener("click", breakTimerLong);
-var breakNeg = breakNegBtn.addEventListener("click", breakTimerShort);
+// Main timer
+startTimerBtn.addEventListener("click", eventsOnClickStart);
+stopTimerBtn.addEventListener("click", eventsOnClickStop);
+resetBtn.addEventListener("click", resetTimer);
+// Session timer
+seshNegBtn.addEventListener("click", seshTimerNeg);
+seshPosBtn.addEventListener("click", seshTimerPos);
+// Break timer
+breakPosBtn.addEventListener("click", breakTimerLong);
+breakNegBtn.addEventListener("click", breakTimerShort);
 
 /*
   Controllers
@@ -88,16 +86,29 @@ function resetTimer() {
   var timer = Number(seshDisplay.textContent);
   display.textContent = (timer < 10 ? "0" + timer : timer) + ":00";
   duration = timer * 60;
+  currentSesh.classList.remove("current");
+  currentBreak.classList.remove("current");
+  display.classList.remove("current");
+  isPause = undefined;
+  switchTimer = false;
 }
 
 // Session timer
 function seshTimerPos() {
   seshDisplay.textContent = Number(seshDisplay.textContent) + 1;
+  if (isPause == undefined) {
+    var timer = Number(seshDisplay.textContent);
+    display.textContent = (timer < 10 ? "0" + timer : timer) + ":00";
+  }
 };
 function seshTimerNeg() {
   seshDisplay.textContent = Number(seshDisplay.textContent) - 1;
   if (seshDisplay.textContent < 1) {
     seshDisplay.textContent = 1;
+  }
+  if (isPause == undefined) {
+    var timer = Number(seshDisplay.textContent);
+    display.textContent = (timer < 10 ? "0" + timer : timer) + ":00";
   }
 };
 
@@ -119,7 +130,6 @@ function breakTimerShort() {
   Timer functionality 
 */
 function startTimer() {
-
   // Handles pause timer, and duration of session and break timer
   if (isPause) {
     // Do nothing (aka don't reset duration)
