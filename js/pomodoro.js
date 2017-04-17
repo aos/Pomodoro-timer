@@ -89,16 +89,26 @@ function resetTimer() {
   currentSesh.classList.remove("current");
   currentBreak.classList.remove("current");
   display.classList.remove("current");
+  isPause = undefined;
+  switchTimer = false;
 }
 
 // Session timer
 function seshTimerPos() {
   seshDisplay.textContent = Number(seshDisplay.textContent) + 1;
+  if (isPause == undefined) {
+    var timer = Number(seshDisplay.textContent);
+    display.textContent = (timer < 10 ? "0" + timer : timer) + ":00";
+  }
 };
 function seshTimerNeg() {
   seshDisplay.textContent = Number(seshDisplay.textContent) - 1;
   if (seshDisplay.textContent < 1) {
     seshDisplay.textContent = 1;
+  }
+  if (isPause == undefined) {
+    var timer = Number(seshDisplay.textContent);
+    display.textContent = (timer < 10 ? "0" + timer : timer) + ":00";
   }
 };
 
@@ -120,7 +130,6 @@ function breakTimerShort() {
   Timer functionality 
 */
 function startTimer() {
-
   // Handles pause timer, and duration of session and break timer
   if (isPause) {
     // Do nothing (aka don't reset duration)
