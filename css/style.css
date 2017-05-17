@@ -170,7 +170,7 @@ body {
 }
 
 .options-text {
-  color: #F5F5F5;
+  color: #D1D1D1;
   font-size: 16px;
 }
 
@@ -192,12 +192,13 @@ button:focus {
 .btn-sesh {
   background: #EFEDED;
   color: #000;
-  font-size: 16px;
-  line-height: 20px;
-  height: 25px;
-  width: 25px;
-  border: 0;
-  border-radius: 30%;
+  font-weight: 700;
+  font-size: 12px;
+  margin: 1px auto;
+  height: 20px;
+  width: 45px;
+  border: 1px solid #c3c3c3;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -205,6 +206,7 @@ button:focus {
 .btn-options:hover {
   background: #000;
   color: #FFF;
+  border: 1px solid #000;
 }
 
 .btn-options {
@@ -212,9 +214,9 @@ button:focus {
   color: #000;
   font-size: 12px;
   line-height: 12px;
-  height: 18px;
-  width: 50px;
-  border: 0;
+  height: 20px;
+  width: 45px;
+  border: 1px solid #c3c3c3;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -222,6 +224,7 @@ button:focus {
 .btn-options-selected {
   background: #444444;
   color: #FFF;
+  border: 1px solid #444;
 }
 
 .main-timer-btn {
