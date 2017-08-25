@@ -17,12 +17,12 @@ Created by Aos (@aosdabbagh)
 License: MIT
 */
 
-(function() {
+(function(root) {
 
   var timerID,
     duration,
     isPause,
-    switchTimer = false;
+    switchTimer = false,
 
   /* 
   Handlers 
@@ -177,4 +177,5 @@ License: MIT
     }, 1000)
   }
 
-})();
+  // Root will be `window` in browser or `global` in node
+})(this);
