@@ -1,16 +1,12 @@
-# Pomodoro-timer
+# Pomodoro Timer
 
-An easy-to-use timer inspired by the Pomodoro technique
+An easy-to-use timer inspired by the Pomodoro technique built using vanilla JS.
 
-Features:
+<img src="https://i.imgur.com/RX8GFQ8.png" alt="Screenshot of timer" data-canonical-src="https://i.imgur.com/RX8GFQ8.png" width="50%">
 
+### Features
 - A countdown timer with user-specified duration
 - A break timer with short (5 min) and long (10 min) duration options
 - When session timer reaches 0, break timer starts
 - When break timer reaches 0, session timer restarts
-
-Spec:
-
-- Must be able to start timer
-- Must be able to pause timer
-- Must be able to reset timer 
+- A bell sounds between cycles 

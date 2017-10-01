@@ -19,34 +19,34 @@ License: MIT
 
 (function(root) {
 
-  var timerID,
+  let timerID,
     duration,
     isPause,
-    switchTimer = false,
+    switchTimer = false;
 
   /* 
   Handlers 
   */
   // Main Timer
-  var display = document.querySelector("#mainTimer");
-  var startTimerBtn = document.querySelector("#startTimerBtn");
-  var stopTimerBtn = document.querySelector("#stopTimerBtn");
-  var resetBtn = document.querySelector("#reset");
+  const display = document.querySelector("#mainTimer");
+  const startTimerBtn = document.querySelector("#startTimerBtn");
+  const stopTimerBtn = document.querySelector("#stopTimerBtn");
+  const resetBtn = document.querySelector("#reset");
   stopTimerBtn.hidden = true;
 
-  var currentSesh = document.querySelector("#currentSesh");
-  var currentBreak = document.querySelector("#currentBreak");
-  var audio = document.querySelector("audio");
+  const currentSesh = document.querySelector("#currentSesh");
+  const currentBreak = document.querySelector("#currentBreak");
+  const audio = document.querySelector("audio");
 
   // Session Timer
-  var seshDisplay = document.querySelector("#seshTimer");
-  var seshNegBtn = document.querySelector("#seshNeg");
-  var seshPosBtn = document.querySelector("#seshPos");
+  const seshDisplay = document.querySelector("#seshTimer");
+  const seshNegBtn = document.querySelector("#seshNeg");
+  const seshPosBtn = document.querySelector("#seshPos");
 
   // Break Timer
-  var breakDisplay = document.querySelector("#breakTimer");
-  var breakNegBtn = document.querySelector("#breakNeg");
-  var breakPosBtn = document.querySelector("#breakPos");
+  const breakDisplay = document.querySelector("#breakTimer");
+  const breakNegBtn = document.querySelector("#breakNeg");
+  const breakPosBtn = document.querySelector("#breakPos");
 
   /* 
   Event listeners
@@ -87,7 +87,7 @@ License: MIT
     isPause = true;
   };
   function resetTimer() {
-    var timer = Number(seshDisplay.textContent);
+    const timer = Number(seshDisplay.textContent);
     display.textContent = (timer < 10 ? "0" + timer : timer) + ":00";
     duration = timer * 60;
     currentSesh.classList.remove("current");
@@ -101,7 +101,7 @@ License: MIT
   function seshTimerPos() {
     seshDisplay.textContent = Number(seshDisplay.textContent) + 1;
     if (isPause == undefined) {
-      var timer = Number(seshDisplay.textContent);
+      const timer = Number(seshDisplay.textContent);
       display.textContent = (timer < 10 ? "0" + timer : timer) + ":00";
     }
   };
@@ -111,7 +111,7 @@ License: MIT
       seshDisplay.textContent = 1;
     }
     if (isPause == undefined) {
-      var timer = Number(seshDisplay.textContent);
+      const timer = Number(seshDisplay.textContent);
       display.textContent = (timer < 10 ? "0" + timer : timer) + ":00";
     }
   };
@@ -150,7 +150,7 @@ License: MIT
     }
 
     timerID = setInterval(function () {
-      var minutes, seconds;
+      let minutes, seconds;
       // Get integer value
       minutes = parseInt(duration / 60, 10);
       seconds = parseInt(duration % 60, 10);
